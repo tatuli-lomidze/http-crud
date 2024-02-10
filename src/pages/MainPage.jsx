@@ -7,7 +7,7 @@ const MainPage = () => {
         name: i.name,
         isCompleted: i.isCompleted,
         id: i._uuid
-      })) || [] 
+      })) || []
 
 
     if(loading) return <p>loading...</p>
