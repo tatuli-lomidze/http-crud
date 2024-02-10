@@ -21,13 +21,16 @@ useEffect(() => {
     if(!res.ok) throw new Error("Response failed")
     return res.json()
   })
-  .then(data => console.log(data.items.map(i => {
+  .then(data => setTaskList(data.items.map(i => {
     return {
-      name: i.items[0].name,
+      name: i.name,
       isCompleted: i.isCompleted,
-      id: i.items[0]._uuid
+      id: i._uuid
     }
+
+   
   })))
+  
   .catch(err => console.log(err))
 
 }, [] )
@@ -43,13 +46,14 @@ useEffect(() => {
       if(!res.ok) throw new Error("Response failed")
       return res.json()
     })
-    .then(data => console.log(data.items.map(i => {
+    .then(data => setTaskList(data.items.map(i => {
       return {
-        name: i.items[0].name,
+        name: i.name,
         isCompleted: i.isCompleted,
-        id: i.items[0]._uuid
-      }
-    })))
+        id: i._uuid
+      } 
+    })) 
+    )
     .catch(err => console.log(err))
 
   }
@@ -75,10 +79,9 @@ useEffect(() => {
         name: data.items[0].name,
         // name: data.items[0].name,       
        isCompleted: data.items[0].isCompleted, 
-
-
         id: data.items[0]._uuid
       }, ...prev
+
     ]))
       .catch(err => console.log(err))
   }
