@@ -6,8 +6,8 @@ const CreatePage = () => {
     const { sendRequest, loading } = useRequest({ url: '/api/v1/todo', method: 'POST' })
     const navigate = useNavigate()
 
-    const onSubmit = (name, isCompleted, date, userName) => {
-        sendRequest({ name, isCompleted, date, userName })
+    const onSubmit = (name, isCompleted) => {
+        sendRequest({ name, isCompleted })
             .then(() => navigate('/'))
             .catch(err => console.log(err))
     };

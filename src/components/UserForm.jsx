@@ -1,95 +1,91 @@
+import  { useState } from "react";
 
-import { useState } from "react"
+const UserForm = ({ onFormSubmit }) => {
+  const [name, setName] = useState('')
+  const [isCompleted, setIsCompleted] = useState(false)
+  const [date, setDate] = useState('')
+  const [userName, setUserName] = useState('')
 
-const UserForm = ({onFormSubmit}) => {
+  const onChange = (e) => {
+    setName(e.target.value)
+  }
 
-    const [name, setName] = useState('')
-    const [isCompleted, setIsCompleted] = useState(false)
+  const checkedOnchange = (e) => {
+    setIsCompleted(e.target.checked)
+  }
 
+  const onDateChange = (e) => {
+    setDate(e.target.value);
+  }
 
-    const onChange = (e) => {
-        setName(e.target.value)
-    }
+  const onUsernameChange = (e) => {
+    setUserName(e.target.value);
+  }
 
-    const checkedOnchange = (e) => {
-        setIsCompleted(e.target.checked)
-    }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    onFormSubmit(name, isCompleted, date, userName);
+    setName('');
+    setIsCompleted(false);
+    setDate('');
+    setUserName('');
+  }
 
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        // console.log("added: ", task);
-        onFormSubmit(name, isCompleted)
-        setName('');
-        setIsCompleted('');
-    }
-
-    return (
-     <div>
+  return (
+    <div>
       <form onSubmit={onSubmit}>
-        <input type="text" placeholder="task" value={name} onChange={onChange} />
+        <input type="text" placeholder="Task" value={name} onChange={onChange} />
         <input type="checkbox" onChange={checkedOnchange} checked={isCompleted} />
-        <label >Completed</label>
+        <label>Completed</label>
+        <input type="date" value={date} onChange={onDateChange} />
+        <input type="text" placeholder="User name" value={userName} onChange={onUsernameChange} />
         <button>Add</button>
-     </form> 
-     </div>
-    )
-    }
+      </form>
+    </div>
+  );
+};
+
+export default UserForm;
 
 
- 
-export default UserForm
 
 
-// import { useRef } from "react"
 
-// const UserForm = ({onFormSubmit, name, isCompleted, date, userName}) => {
 
-//     const nameRef = useRef('')
-//     const isCompletedRef = useRef()
-//     const dateRef = useRef()
-//     const userNameRef = useRef()
+// import { useState } from "react"
 
-    // const onChange = (e) => {
-    //     setName(e.target.value)
-    // }
+// const UserForm = ({onFormSubmit}) => {
 
-    // const checkedOnchange = (e) => {
-    //     setIsCompleted(e.target.checked)
-    // }
+//     const [name, setName] = useState('')
+//     const [isCompleted, setIsCompleted] = useState(false)
+//     const [date, setDate] = useState()
+//     const [userName, setUserName] = useState()
+
+
+
+//     const onChange = (e) => {
+//         setName(e.target.value)
+//     }
+
+//     const checkedOnchange = (e) => {
+//         setIsCompleted(e.target.checked)
+//     }
 
 
 //     const onSubmit = (e) => {
 //         e.preventDefault();
 //         // console.log("added: ", task);
-//         // onFormSubmit(name, isCompleted)
-//         // setName('');
-//         // setIsCompleted('');
-//        if( nameRef.current && isCompletedRef.current && dateRef.current && userNameRef.current)   {
-//         onFormSubmit(nameRef.current.value, isCompletedRef.current.value, dateRef.current.value, userNameRef.current.value) 
-//     } else {
-//         return 'please fill all the info'
-//     }
+//         onFormSubmit(name, isCompleted)
+//         setName('');
+//         setIsCompleted('');
 //     }
 
 //     return (
 //      <div>
 //       <form onSubmit={onSubmit}>
-
-//         {/* task input  */}
-//         <input type="text" placeholder="task"
-//         //  value={name}
-//          ref={nameRef}
-//          defaultValue={name}
-//         />
-
-//            {/* check input  */}
-//         <input type="checkbox" 
-//           ref={isCompletedRef}
-//           />
+//         <input type="text" placeholder="task"  onChange={onChange} />
+//         <input type="checkbox" onChange={checkedOnchange} checked={isCompleted} />
 //         <label >Completed</label>
-
-
 //         <button>Add</button>
 //      </form> 
 //      </div>
@@ -99,6 +95,5 @@ export default UserForm
 
  
 // export default UserForm
-
 
 

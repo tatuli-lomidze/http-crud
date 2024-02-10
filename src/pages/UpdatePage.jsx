@@ -22,5 +22,6 @@ const UpdatePage = () => {
      name={response.name}
      isCompleted = {response.isCompleted} />
 
+     
 }
 export default UpdatePage
