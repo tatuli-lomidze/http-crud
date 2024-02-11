@@ -43,3 +43,6 @@ const useFetch = ({ url, method }) => {
 
 
 export default useFetch;
+
+// export default useFetch;
+
